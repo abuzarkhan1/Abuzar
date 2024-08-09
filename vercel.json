@@ -2,17 +2,20 @@
   "builds": [
     {
       "src": "vite.config.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/**",
-      "use": "@vercel/static"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
     {
       "src": "/Abuzar-Portfolio/(.*)",
-      "dest": "/index.html"
+      "dest": "/Abuzar-Portfolio/$1"
+    },
+    {
+      "src": "/Abuzar-Portfolio",
+      "dest": "/Abuzar-Portfolio/index.html"
     }
   ]
 }
