@@ -16,6 +16,10 @@
     {
       "src": "/Abuzar-Portfolio",
       "dest": "/Abuzar-Portfolio/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
