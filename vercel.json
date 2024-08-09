@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/Abuzar-Portfolio/(.*)",
-      "dest": "/$1"
+      "dest": "/index.html"
     }
   ]
 }
