@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://abuzarkhan1.github.io/Abuzar/",
+
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
