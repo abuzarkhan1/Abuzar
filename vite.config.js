@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+// vite.config.ts
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/Abuzar-Portfolio/' // Ensure this is set to your deployment path
-});
+  base: '/Abuzar/', // This should match your repository name
+  build: {
+    outDir: 'dist',
+  },
+})
