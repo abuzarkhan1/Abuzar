@@ -142,7 +142,7 @@ const Skills = () => {
                                 "Express",
                                 "TypeScript",
                                 "Mysql",
-                                "redis",
+                                "Redis",
                             ]}
                         />
                         <Service
