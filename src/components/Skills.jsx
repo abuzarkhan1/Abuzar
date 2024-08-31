@@ -140,7 +140,9 @@ const Skills = () => {
                                 "React",
                                 "Node",
                                 "Express",
-                                "MongoDB",
+                                "TypeScript",
+                                "Mysql",
+                                "redis",
                             ]}
                         />
                         <Service
@@ -155,7 +157,8 @@ const Skills = () => {
                                 "Docker",
                                 "Kubernetes",
                                 "Terraform",
-                                "Ansible"
+                                "Prometheus",
+                                "Grafana",
                             ]}
                         />
                     </div>
