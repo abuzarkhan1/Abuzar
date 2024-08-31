@@ -162,7 +162,7 @@ const HeroBanner = () => {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <img src={man} alt="" />
+                    {/* <img src={man} alt="" /> */}
 
                     {/* HIRE ME BUTTON START */}
                     <div
