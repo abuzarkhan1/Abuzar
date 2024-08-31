@@ -49,7 +49,7 @@ const AboutMe = () => {
 
         {/* PARAGRAPH START */}
         <Div className="max-w-[759px] 2xl:max-w-[959px] text-[16px] 2xl:text-[20px] leading-[24px] 2xl:leading-[32px] mb-[20px] md:mb-[30px] 2xl:mb-[50px] relative">
-          I have completed my Bachelor's degree in Software Engineering from the
+          I am doing my Bachelor's degree in Software Engineering from the
           University of Engineering and Technology (UET) Mardan, Pakistan.
           Throughout my academic journey, I have gained valuable knowledge and
           experience in areas such as software design, agile methodologies. To
