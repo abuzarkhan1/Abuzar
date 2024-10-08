@@ -1,9 +1,9 @@
 import p1 from "./assets/plura.jpeg";
 import p2 from "./assets/multi.jpg";
 import p3 from "./assets/music.jpg";
-import p4 from "./assets/eo.jpg";
-import p5 from "./assets/ch.jpg";
-import p6 from "./assets/new.jpg";
+import p4 from "./assets/1.jpg";
+import p5 from "./assets/2.jpg";
+import p6 from "./assets/3.png";
 
 export const filters = [
     {
@@ -13,6 +13,24 @@ export const filters = [
 ];
 
 export const projects = [
+    {
+        name: "End to End Maven CICD Project using ArgoCD",
+        image: p4,
+        tags: ["all"],
+        // codeLink: "https://github.com/abuzarkhan1/Plura-SaaS",
+    },
+    {
+        name: "End to End Mern stack CICD Project",
+        image: p5,
+        tags: ["all"],
+        // codeLink: "https://github.com/abuzarkhan1/Multi_Vendor",
+    },
+    {
+        name: "Netflix Clone CICD Using ArgoCD and Monitored Using Prometheus and Grafana",
+        image: p6,
+        tags: ["all"],
+        // codeLink: "https://github.com/abuzarkhan1/Music-App",
+    },
     {
         name: "Plura",
         image: p1,
@@ -30,24 +48,6 @@ export const projects = [
         image: p3,
         tags: ["all"],
         codeLink: "https://github.com/abuzarkhan1/Music-App",
-    },
-    {
-        name: "Ecommerce Web Application",
-        image: p4,
-        tags: ["all"],
-        codeLink: "https://github.com/abuzarkhan1/Ecommerce-Hoc",
-    },
-    {
-        name: "Chat App",
-        image: p5,
-        tags: ["all"],
-        codeLink: "https://github.com/abuzarkhan1/android__project",
-    },
-    {
-        name: "News App",
-        image: p6,
-        tags: ["all"],
-        codeLink: "",
     },
 ];
 
