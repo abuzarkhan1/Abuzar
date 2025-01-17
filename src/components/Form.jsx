@@ -14,8 +14,8 @@ const Form = () => {
 
         // Below credentials are required to link your email id with contact form you can create your credentials in emailjs.com
         send(
-            "service_vkacdza", // Service ID
-            "template_xjrfn7g", // Template ID
+            "service_4cnr86b", // Service ID
+            "template_xwxu4dl", // Template ID
             userInput,
             "K05BvZOQVjBKcp5n7" // Public Key - https://dashboard.emailjs.com/admin/account
         )
