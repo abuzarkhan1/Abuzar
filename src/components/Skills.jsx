@@ -59,10 +59,19 @@ const Skills = () => {
     const y3 = useTransform(scrollY, [0, 2700], [2000, 0], { clamp: false });
 
     const handleProjectClick = (project) => {
+        // Scroll to top when opening project details
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setSelectedProject(project);
     };
 
     const handleBackToProjects = () => {
+        // Scroll to skills section when going back to projects
+        setTimeout(() => {
+            const skillsSection = document.getElementById('skills');
+            if (skillsSection) {
+                skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
         setSelectedProject(null);
     };
 

@@ -59,7 +59,7 @@ const Portfolio = ({ onProjectClick }) => {
                             className="flex flex-col gap-4"
                         >
                             <div 
-                                className="bg-black rounded-[20px] aspect-video overflow-hidden cursor-pointer group"
+                                className="bg-black rounded-[20px] aspect-video overflow-hidden cursor-pointer group relative"
                                 onClick={() => onProjectClick && onProjectClick(item)}
                             >
                                 <img
