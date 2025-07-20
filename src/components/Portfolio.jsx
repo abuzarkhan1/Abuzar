@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { projects, filters } from "../data";
 import Div from "./Div";
-import { FaPlay, FaCode } from "react-icons/fa"; 
+import { FaPlay, FaCode, FaEye } from "react-icons/fa";
 
-const Portfolio = () => {
+const Portfolio = ({ onProjectClick }) => {
     const [selectedTag, setSelectedTag] = useState("all");
     const [projectData, setProjectData] = useState(projects);
 
@@ -56,41 +56,52 @@ const Portfolio = () => {
                     return (
                         <Div
                             key={index}
-                            className="flex flex-col gap-4 cursor-pointer"
+                            className="flex flex-col gap-4"
                         >
-                            <div className="bg-black rounded-[20px] aspect-video overflow-hidden">
+                            <div 
+                                className="bg-black rounded-[20px] aspect-video overflow-hidden cursor-pointer group"
+                                onClick={() => onProjectClick && onProjectClick(item)}
+                            >
                                 <img
                                     src={item.image}
-                                    className="transition-transform hover:-translate-y-[25%] hover:duration-2500 ease-linear"
+                                    className="transition-transform group-hover:scale-110 duration-500 ease-in-out w-full h-full object-cover"
                                 />
-                              
+                                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <div className="text-white text-center">
+                                        <FaEye size={30} className="mx-auto mb-2" />
+                                        <p className="text-[16px] font-medium">View Details</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="text-[20px] 2xl:text-[24px] text-[#CCCCCC] text-center">
+                            <div 
+                                className="text-[20px] 2xl:text-[24px] text-[#CCCCCC] text-center cursor-pointer hover:text-[#EFB946] transition-colors"
+                                onClick={() => onProjectClick && onProjectClick(item)}
+                            >
                                 {item.name}
                             </div>
-                            <div className="flex justify-center gap-2">
-                                {/* Code Button */}
-                                {/* Replace 'item.codeLink' with your actual code or video link */}
-                                <a
-                                    href={item.codeLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[#EFB946] hover:underline"
-                                >
-                                    <FaCode size={20} /> 
-                                </a>
-                            </div>
                             <div className="flex justify-center gap-4">
-                                {/* Code Button */}
-                                {/* Replace 'item.codeLink' with your actual code or video link */}
-                                <a
-                                    href={item.codeLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-[#EFB946] hover:underline"
-                                >
-                                    <FaPlay size={20} /> 
-                                </a>
+                                {item.codeLink && (
+                                    <a
+                                        href={item.codeLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#EFB946] hover:text-white transition-colors"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <FaCode size={20} />
+                                    </a>
+                                )}
+                                {item.liveLink && (
+                                    <a
+                                        href={item.liveLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[#EFB946] hover:text-white transition-colors"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <FaPlay size={20} />
+                                    </a>
+                                )}
                             </div>
                         </Div>
                     );

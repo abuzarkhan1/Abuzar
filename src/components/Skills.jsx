@@ -6,6 +6,7 @@ import SkillIcon from "./SkillIcon";
 import Service from "./Service";
 import Portfolio from "./Portfolio";
 import Achievements from "./Achievements";
+import ProjectDetails from "./ProjectDetails";
 import Div from "./Div";
 
 // Import your assets here
@@ -51,10 +52,28 @@ import pe2 from "../assets/sec-3-p-e-2.png";
 import pe3 from "../assets/sec-3-p-e-3.png";
 
 const Skills = () => {
+    const [selectedProject, setSelectedProject] = React.useState(null);
     const { scrollY } = useScroll();
     const y1 = useTransform(scrollY, [0, 1500], [1000, 0], { clamp: false });
     const y2 = useTransform(scrollY, [0, 2200], [1500, 0], { clamp: false });
     const y3 = useTransform(scrollY, [0, 2700], [2000, 0], { clamp: false });
+
+    const handleProjectClick = (project) => {
+        setSelectedProject(project);
+    };
+
+    const handleBackToProjects = () => {
+        setSelectedProject(null);
+    };
+
+    if (selectedProject) {
+        return (
+            <ProjectDetails 
+                project={selectedProject} 
+                onBack={handleBackToProjects} 
+            />
+        );
+    }
 
     return (
         <div
@@ -188,7 +207,7 @@ const Skills = () => {
                 </div>
                 {/* SERVICES SECTION END */}
 
-                <Portfolio />
+                <Portfolio onProjectClick={handleProjectClick} />
                 <Achievements />
             </Wrapper>
         </div>
