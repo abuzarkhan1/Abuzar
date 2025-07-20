@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Wrapper from "./Wrapper";
-import man from "../assets/rizwan.png";
 import externalLinkIcon from "../assets/external-link-icon.png";
 import gmailIcon from "../assets/email-icon.png";
 import { scrollTo } from "../helper";

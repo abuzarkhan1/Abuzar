@@ -161,17 +161,6 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                                 View Code
                             </a>
                         )}
-                        {project.liveLink && (
-                            <a
-                                href={project.liveLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-3 bg-[#EFB946] hover:bg-[#d4a139] text-black transition-all duration-300 rounded-lg py-[15px] px-[25px] text-[16px] 2xl:text-[18px] font-medium"
-                            >
-                                <FaExternalLinkAlt />
-                                Live Demo
-                            </a>
-                        )}
                     </Div>
                 )}
                 {/* PROJECT LINKS END */}

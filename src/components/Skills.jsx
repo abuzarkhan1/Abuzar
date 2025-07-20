@@ -36,12 +36,6 @@ import aws from "../assets/aws.svg";
 import pro from "../assets/prometheus.svg";
 import graf from "../assets/grafana.svg";
 
-
-
-
-
-
-
 import sknode from "../assets/node.png";
 import skmongo from "../assets/mongo.png";
 import skmysql from "../assets/mysql.png";
@@ -50,6 +44,9 @@ import pattern from "../assets/heading-pattern.png";
 import pe1 from "../assets/sec-3-p-e-1.png";
 import pe2 from "../assets/sec-3-p-e-2.png";
 import pe3 from "../assets/sec-3-p-e-3.png";
+
+
+
 
 const Skills = () => {
     const [selectedProject, setSelectedProject] = React.useState(null);
