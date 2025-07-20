@@ -29,7 +29,7 @@ export const filters = [
 
 export const projects = [
   {
-    name: "Intelligent Human Resource Management System with Automated Resume Screening and DevOps-Based Deployment",
+    name: "Next-Gen HRMS with AI Screening & DevOps Automation",
     image: H4,
     images: [H1, H2, H3, H4, H5, H6, H7, H8, H9, H10],
     tags: ["all"],
