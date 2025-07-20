@@ -59,30 +59,16 @@ const Skills = () => {
     const y3 = useTransform(scrollY, [0, 2700], [2000, 0], { clamp: false });
 
     const handleProjectClick = (project) => {
-        // Scroll to top when opening project details
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         setSelectedProject(project);
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
     };
 
     const handleBackToProjects = () => {
-        // Scroll to skills section when going back to projects
-        setTimeout(() => {
-            const skillsSection = document.getElementById('skills');
-            if (skillsSection) {
-                skillsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 100);
         setSelectedProject(null);
+        // Restore body scroll when modal is closed
+        document.body.style.overflow = 'unset';
     };
-
-    if (selectedProject) {
-        return (
-            <ProjectDetails 
-                project={selectedProject} 
-                onBack={handleBackToProjects} 
-            />
-        );
-    }
 
     return (
         <div
@@ -219,6 +205,13 @@ const Skills = () => {
                 <Portfolio onProjectClick={handleProjectClick} />
                 <Achievements />
             </Wrapper>
+            
+            {/* PROJECT DETAILS MODAL */}
+            <ProjectDetails 
+                project={selectedProject} 
+                onBack={handleBackToProjects}
+                isOpen={!!selectedProject}
+            />
         </div>
     );
 };

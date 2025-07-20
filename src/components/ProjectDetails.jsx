@@ -7,11 +7,16 @@ import Wrapper from "./Wrapper";
 import Div from "./Div";
 import { FaArrowLeft, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
-const ProjectDetails = ({ project, onBack }) => {
+const ProjectDetails = ({ project, onBack, isOpen }) => {
     if (!project) return null;
 
     return (
-        <div className="w-full min-h-screen bg-[#111111] py-[50px] md:py-[100px] relative overflow-hidden">
+        <div className={`fixed inset-0 z-50 bg-[#111111] transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            {/* MODAL OVERLAY */}
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onBack}></div>
+            
+            {/* MODAL CONTENT */}
+            <div className="relative w-full h-full overflow-y-auto py-[50px] md:py-[100px]">
             {/* BACKGROUND ELEMENTS START */}
             <div className="sec-3-bg-gradient-1" />
             <div className="sec-3-bg-gradient-2" />
@@ -22,10 +27,10 @@ const ProjectDetails = ({ project, onBack }) => {
                 <Div className="mb-10">
                     <button
                         onClick={onBack}
-                        className="flex items-center gap-3 text-[#EFB946] hover:text-white transition-colors cursor-pointer text-[18px] font-medium"
+                        className="flex items-center gap-3 text-[#EFB946] hover:text-white transition-colors cursor-pointer text-[18px] font-medium bg-[#252525] hover:bg-[#333] px-4 py-2 rounded-lg"
                     >
                         <FaArrowLeft />
-                        Back to Projects
+                        Close Details
                     </button>
                 </Div>
                 {/* BACK BUTTON END */}
@@ -171,6 +176,7 @@ const ProjectDetails = ({ project, onBack }) => {
                 )}
                 {/* PROJECT LINKS END */}
             </Wrapper>
+            </div>
         </div>
     );
 };
