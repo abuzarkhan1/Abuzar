@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://abuzarkhan1.github.io/Abuzar/",
-
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -16,6 +15,7 @@
     "@fortawesome/fontawesome-free": "^6.4.2",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^8.5.5",
+    "lucide-react": "^0.562.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
