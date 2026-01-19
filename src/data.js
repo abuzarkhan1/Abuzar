@@ -1,6 +1,21 @@
 import p1 from "./assets/plura.jpeg";
 import p2 from "./assets/multi.jpg";
-import p3 from "./assets/music.jpg";
+import aa1 from "./assets/aa1.jpeg";
+import aa2 from "./assets/aa2.jpeg";
+import aa3 from "./assets/aa3.jpeg";
+import aa4 from "./assets/aa4.jpeg";
+import aa5 from "./assets/aa5.jpeg";
+import aa6 from "./assets/aa6.jpeg";
+import aa7 from "./assets/aa7.jpeg";
+import aa8 from "./assets/aa8.png";
+import aa9 from "./assets/aa9.png";
+import aa10 from "./assets/aa10.png";
+import aa11 from "./assets/aa11.png";
+import aa12 from "./assets/aa12.png";
+import aa13 from "./assets/aa13.png";
+import aa14 from "./assets/aa14.png";
+import aa15 from "./assets/aa15.jpeg";
+import aa16 from "./assets/aa16.png";
 import p5 from "./assets/2.jpg";
 import p6 from "./assets/3.png";
 
@@ -109,6 +124,56 @@ This system represents a cloud-native, secure, and intelligent solution tailored
     tools: ["ArgoCD", "Prometheus", "Grafana", "Docker", "Kubernetes", "Helm"],
   },
   {
+    name: "ArenaX",
+    image: aa16,
+    images: [
+      aa16,
+      aa1,
+      aa2,
+      aa3,
+      aa4,
+      aa5,
+      aa6,
+      aa7,
+      aa15,
+      aa8,
+      aa9,
+      aa10,
+      aa11,
+      aa12,
+      aa13,
+      aa14,
+    ],
+    tags: ["all"],
+    description:
+      "Comprehensive cross-platform eSports tournament management ecosystem.",
+    fullDescription:
+      "ArenaX is a comprehensive cross-platform eSports tournament management ecosystem designed to bridge the gap between competitive players and tournament organizers. The platform is built on a dual-interface architecture, featuring a high-performance Web Dashboard for administrators to orchestrate events and a feature-rich Mobile Application for players to compete on the go.\n\nThe system empowers organizers to seamlessly create tournaments, manage automated bracket systems, and oversee real-time match reporting. For players, the native mobile experience allows for intuitive team management, secure wallet transactions (deposits/withdrawals), and instant tournament registration. Key technical highlights include a real-time notification engine powered by Socket.io for live updates, a robust financial ledger system for handling multi-currency prize pools, and a secure, JWT-based authentication flow ensuring data integrity across all devices.\n\nThe application is engineered for performance and scalability, utilizing a modern MERN stack (MongoDB, Express, React, Node.js) alongside React Native for mobile, ensuring a consistent and responsive experience whether on the web or a handheld device.",
+    skills: [
+      "React.js",
+      "React Native",
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
+      "Socket.io",
+      "TailwindCSS",
+      "Zustand",
+    ],
+    tools: [
+      "Git",
+      "Docker",
+      "Vite",
+      "Expo",
+      "Playwright",
+      "Vitest",
+      "Postman",
+      "Framer Motion",
+      "JWT & Bcrypt",
+    ],
+  },
+  {
     name: "Sitara Ecommerce Web Application",
     image: e1,
     images: [e1, e2, e3, e4],
@@ -146,24 +211,7 @@ This system represents a cloud-native, secure, and intelligent solution tailored
     ],
     tools: ["Stripe", "PayPal", "Cloudinary", "JWT", "Nodemailer"],
   },
-  {
-    name: "Music Web Application",
-    image: p3,
-    images: [p3],
-    tags: ["all"],
-    description: "Interactive music streaming application with modern UI/UX.",
-    fullDescription:
-      "A modern music streaming web application with features like playlist creation, music search, audio player controls, and user preferences. Built with responsive design and smooth animations.\n\nIncludes features like music categorization, favorite songs, playlist sharing, audio visualization, and integration with music APIs for extensive music library access.",
-    skills: [
-      "React",
-      "JavaScript",
-      "CSS3",
-      "HTML5",
-      "Web Audio API",
-      "Responsive Design",
-    ],
-    tools: ["Spotify API", "Web Audio API", "Local Storage", "CSS Animations"],
-  },
+
 ];
 
 export const achievements = [
