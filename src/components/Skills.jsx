@@ -8,6 +8,7 @@ import Portfolio from "./Portfolio";
 import Achievements from "./Achievements";
 import ProjectDetails from "./ProjectDetails";
 import Div from "./Div";
+import Certificates from "./Certificates";
 
 // Import your assets here
 import tail from "../assets/tail.svg";
@@ -27,7 +28,6 @@ import jira from "../assets/jira.svg";
 import redis from "../assets/redis.svg";
 
 import git from "../assets/git.svg";
-import github from "../assets/github.svg";
 import docker from "../assets/docker.svg";
 import trivy from "../assets/trivy.png";
 import sonar from "../assets/sonarqube.svg";
@@ -35,6 +35,7 @@ import Kubernetes from "../assets/kubernets.svg";
 import aws from "../assets/aws.svg";
 import pro from "../assets/prometheus.svg";
 import graf from "../assets/grafana.svg";
+import github from "../assets/github.svg";
 
 import sknode from "../assets/node.png";
 import skmongo from "../assets/mongo.png";
@@ -44,6 +45,17 @@ import pattern from "../assets/heading-pattern.png";
 import pe1 from "../assets/sec-3-p-e-1.png";
 import pe2 from "../assets/sec-3-p-e-2.png";
 import pe3 from "../assets/sec-3-p-e-3.png";
+
+import nginx from "../assets/nginx.svg";
+import fastapi from "../assets/fastapi.svg";
+import flask from "../assets/flask.svg";
+import golang from "../assets/golang.svg";
+import azure from "../assets/azure.svg";
+import gcp from "../assets/gcp.svg";
+import oracle from "../assets/oracle.svg";
+import postgresql from "../assets/postgresql.svg";
+import githubactions from "../assets/githubactions.svg";
+import jenk from "../assets/jenk.svg";
 
 
 
@@ -103,18 +115,17 @@ const Skills = () => {
                 <Div className="grid grid-cols-4 gap-3 md:grid-cols-11 relative mb-10">
                     <SkillIcon path={sknode} />
                     <SkillIcon path={ex} />
-
                     <SkillIcon path={skpython} />
+                    <SkillIcon path={fastapi} />
+                    <SkillIcon path={flask} />
+                    <SkillIcon path={golang} />
                     <SkillIcon path={skmongo} />
                     <SkillIcon path={skmysql} />
+                    <SkillIcon path={postgresql} />
                     <SkillIcon path={redis} />
-
-
                     <SkillIcon path={jira} />
                     <SkillIcon path={post} />
-
-
-                    </Div>
+                </Div>
                 {/* BACKEND SKILLS END */}
 
                 {/* DEPLOYMENT SKILLS START */}
@@ -123,6 +134,8 @@ const Skills = () => {
                     
                 <SkillIcon path={git} />
                 <SkillIcon path={github} />
+                <SkillIcon path={githubactions} />
+                <SkillIcon path={jenk} />
                 <SkillIcon path={docker} />
                 <SkillIcon path={trivy} />
                 <SkillIcon path={sonar} />
@@ -130,6 +143,10 @@ const Skills = () => {
                 <SkillIcon path={pro} />
                 <SkillIcon path={graf} />
                 <SkillIcon path={aws} />
+                <SkillIcon path={azure} />
+                <SkillIcon path={gcp} />
+                <SkillIcon path={oracle} />
+                <SkillIcon path={nginx} />
 
 
 
@@ -137,6 +154,12 @@ const Skills = () => {
                     {/* Add any additional deployment skills here */}
                 </Div>
                 {/* DEPLOYMENT SKILLS END */}
+
+                {/* CERTIFICATES START */}
+                <div className="w-full relative py-[50px]">
+                    <Certificates />
+                </div>
+                {/* CERTIFICATES END */}
 
                 {/* SERVICES SECTION START */}
                 <div className="flex items-end justify-between flex-wrap-reverse py-[50px] md:py-[100px] relative">
