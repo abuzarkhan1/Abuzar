@@ -67,12 +67,6 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                             const slides = images.map((img, i) => ({
                                 src: img,
                                 alt: `${project.name} Screenshot ${i + 1}`,
-                                title: i === 0 ? `${project.name} · Primary Interface` : `${project.name} · Snapshot ${i + 1}`,
-                                subtitle: `${project.category || "Featured System"} · View ${i + 1} of ${images.length}`,
-                                meta: [
-                                    { label: "Preview", value: `${i + 1} / ${images.length}` },
-                                    { label: "Type", value: "Production Screenshot" },
-                                ]
                             }));
 
                             return (
@@ -84,7 +78,7 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                                         depth={0.4}
                                         gap={0.06}
                                         loop={slides.length > 2}
-                                        showCaption={true}
+                                        showCaption={false}
                                         showPagination={true}
                                         showNavigation={true}
                                         className="py-2"

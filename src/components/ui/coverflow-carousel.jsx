@@ -15,7 +15,7 @@ export function CoverflowCarousel({
   cardWidth = "clamp(320px, 62vw, 880px)",
   gap = 0.05,
   loop = true,
-  showCaption = true,
+  showCaption = false,
   showPagination = true,
   showNavigation = true,
   label = "Cover carousel",
