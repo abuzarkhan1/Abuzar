@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const useIsoLayoutEffect =
@@ -7,13 +7,13 @@ const useIsoLayoutEffect =
 
 export function CoverflowCarousel({
   slides = [],
-  rotate = 36,
-  depth = 0.5,
-  perspective = 3,
+  rotate = 30,
+  depth = 0.4,
+  perspective = 3.2,
   falloff = 0.56,
-  fade = 0.15,
-  cardWidth = "clamp(280px, 48vw, 680px)",
-  gap = 0.08,
+  fade = 0.18,
+  cardWidth = "clamp(320px, 62vw, 880px)",
+  gap = 0.05,
   loop = true,
   showCaption = true,
   showPagination = true,
@@ -31,8 +31,12 @@ export function CoverflowCarousel({
   const widthRef = React.useRef(0);
   const rafRef = React.useRef(null);
   const dragRef = React.useRef(null);
+  const hasDraggedRef = React.useRef(false);
 
   const [selected, setSelected] = React.useState(0);
+  const [fullscreenIndex, setFullscreenIndex] = React.useState(null);
+
+  const isFullscreen = fullscreenIndex !== null;
 
   const indexAt = React.useCallback(
     (pos) => {
@@ -85,7 +89,7 @@ export function CoverflowCarousel({
           rafRef.current = null;
           return;
         }
-        posRef.current += remaining * 0.16;
+        posRef.current += remaining * 0.18;
         paint();
         rafRef.current = requestAnimationFrame(step);
       };
@@ -123,10 +127,12 @@ export function CoverflowCarousel({
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
+    hasDraggedRef.current = false;
     event.currentTarget.setPointerCapture(event.pointerId);
     targetRef.current = posRef.current;
     dragRef.current = {
       id: event.pointerId,
+      startX: event.clientX,
       x: event.clientX,
       pos: posRef.current,
       v: 0,
@@ -137,6 +143,10 @@ export function CoverflowCarousel({
   const onPointerMove = (event) => {
     const drag = dragRef.current;
     if (!drag || drag.id !== event.pointerId) return;
+
+    if (Math.abs(event.clientX - drag.startX) > 5) {
+      hasDraggedRef.current = true;
+    }
 
     const pitch = widthRef.current * (1 + gap);
     if (!pitch) return;
@@ -159,6 +169,33 @@ export function CoverflowCarousel({
     const carried = Math.max(-2, Math.min(2, drag.v * 0.18));
     settle(clamp(Math.round(posRef.current + carried)));
   };
+
+  const handleCardClick = (index) => {
+    if (hasDraggedRef.current) return;
+    if (index === selected) {
+      setFullscreenIndex(index);
+    } else {
+      goTo(index);
+    }
+  };
+
+  // Fullscreen modal keyboard listener
+  React.useEffect(() => {
+    if (!isFullscreen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setFullscreenIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        setFullscreenIndex((prev) => (prev > 0 ? prev - 1 : count - 1));
+      } else if (e.key === "ArrowRight") {
+        setFullscreenIndex((prev) => (prev < count - 1 ? prev + 1 : 0));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isFullscreen, count]);
 
   useIsoLayoutEffect(() => {
     const frame = frameRef.current;
@@ -187,10 +224,11 @@ export function CoverflowCarousel({
   if (count === 0) return null;
 
   const active = slides[selected];
+  const activeFullscreen = isFullscreen ? slides[fullscreenIndex] : null;
 
   return (
     <div
-      className={cn("w-full select-none", className)}
+      className={cn("w-full select-none relative", className)}
       style={{ ["--cf-card"]: cardWidth }}
       role="region"
       aria-roledescription="carousel"
@@ -213,7 +251,7 @@ export function CoverflowCarousel({
               nudge(1);
             }
           }}
-          className="cursor-grab overflow-hidden py-8 md:py-12 outline-none ring-0 active:cursor-grabbing"
+          className="cursor-grab overflow-hidden py-10 md:py-16 outline-none ring-0 active:cursor-grabbing"
           style={{
             perspective: `calc(var(--cf-card) * ${perspective})`,
             touchAction: "pan-y",
@@ -235,9 +273,12 @@ export function CoverflowCarousel({
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${count}`}
-                onClick={() => goTo(index)}
+                onClick={() => handleCardClick(index)}
                 className={cn(
-                  "absolute left-1/2 top-0 aspect-[16/10] overflow-hidden rounded-2xl bg-[#1c1c1c] border border-[#2f2f2f] shadow-[0_20px_50px_rgba(0,0,0,0.8)] will-change-transform cursor-pointer transition-shadow hover:border-[#EFB946]/50",
+                  "absolute left-1/2 top-0 aspect-[16/10] overflow-hidden rounded-2xl bg-[#181818] border border-[#333333] shadow-[0_25px_60px_rgba(0,0,0,0.85)] will-change-transform cursor-pointer transition-all duration-300 group",
+                  index === selected
+                    ? "border-[#EFB946] shadow-[#EFB946]/10"
+                    : "hover:border-[#666666]",
                   cardClassName
                 )}
                 style={{ width: "var(--cf-card)" }}
@@ -246,55 +287,65 @@ export function CoverflowCarousel({
                   src={slide.src}
                   alt={slide.alt || `Slide ${index + 1}`}
                   draggable={false}
-                  className="h-full w-full select-none object-cover pointer-events-none"
+                  className="h-full w-full select-none object-cover pointer-events-none group-hover:scale-[1.02] transition-transform duration-500"
                 />
-                {/* Active Indicator Overlay */}
-                <div
-                  className={cn(
-                    "absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 pointer-events-none",
-                    index === selected && "opacity-100"
-                  )}
-                />
+
+                {/* EXPAND ON HOVER BADGE FOR ACTIVE CARD */}
+                {index === selected && (
+                  <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                    <div className="bg-[#EFB946] text-black font-semibold text-xs md:text-sm px-4 py-2 rounded-full flex items-center gap-2 shadow-2xl scale-95 group-hover:scale-100 transition-transform duration-300">
+                      <Maximize2 className="w-4 h-4" />
+                      <span>Click for Fullscreen View</span>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
 
+        {/* NAVIGATION ARROW BUTTONS */}
         {showNavigation && count > 1 && (
           <>
             <button
               type="button"
               aria-label="Previous slide"
-              onClick={() => nudge(-1)}
-              className="absolute left-2 md:left-4 top-1/2 z-[200] -translate-y-1/2 rounded-full bg-[#1e1e1e]/80 border border-[#333333] p-3 text-[#EFB946] hover:text-white backdrop-blur-md transition-all hover:bg-[#282828] hover:scale-110 shadow-xl cursor-pointer active:scale-95"
+              onClick={(e) => {
+                e.stopPropagation();
+                nudge(-1);
+              }}
+              className="absolute left-1 sm:left-3 md:left-6 top-1/2 z-[250] -translate-y-1/2 rounded-full bg-[#181818]/90 border border-[#3a3a3a] p-3.5 md:p-4 text-[#EFB946] hover:text-white backdrop-blur-md transition-all hover:bg-[#252525] hover:scale-110 hover:border-[#EFB946] shadow-2xl cursor-pointer active:scale-95"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               type="button"
               aria-label="Next slide"
-              onClick={() => nudge(1)}
-              className="absolute right-2 md:right-4 top-1/2 z-[200] -translate-y-1/2 rounded-full bg-[#1e1e1e]/80 border border-[#333333] p-3 text-[#EFB946] hover:text-white backdrop-blur-md transition-all hover:bg-[#282828] hover:scale-110 shadow-xl cursor-pointer active:scale-95"
+              onClick={(e) => {
+                e.stopPropagation();
+                nudge(1);
+              }}
+              className="absolute right-1 sm:right-3 md:right-6 top-1/2 z-[250] -translate-y-1/2 rounded-full bg-[#181818]/90 border border-[#3a3a3a] p-3.5 md:p-4 text-[#EFB946] hover:text-white backdrop-blur-md transition-all hover:bg-[#252525] hover:scale-110 hover:border-[#EFB946] shadow-2xl cursor-pointer active:scale-95"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </>
         )}
       </div>
 
-      {/* CAPTION INFO */}
+      {/* CAPTION & METADATA */}
       {showCaption && active && (
         <div
           key={selected}
-          className="mt-4 flex flex-col items-center px-4 duration-300 animate-in fade-in"
+          className="mt-2 flex flex-col items-center px-4 duration-300 animate-in fade-in"
         >
           {active.title && (
-            <p className="text-[16px] md:text-[18px] font-oswald uppercase tracking-wider text-white font-medium">
+            <p className="text-[17px] md:text-[20px] font-oswald uppercase tracking-wider text-white font-medium">
               {active.title}
             </p>
           )}
           {active.subtitle && (
-            <p className="mt-1 text-[13px] md:text-[14px] text-[#A0A0A0] font-light">
+            <p className="mt-1 text-[13px] md:text-[15px] text-[#A0A0A0] font-light">
               {active.subtitle}
             </p>
           )}
@@ -303,12 +354,19 @@ export function CoverflowCarousel({
               {active.meta.map((row, rIdx) => (
                 <div
                   key={rIdx}
-                  className="bg-[#1e1e1e] border border-[#2a2a2a] px-3 py-1 rounded-full text-[12px] text-[#CCCCCC] flex items-center gap-1.5"
+                  className="bg-[#1c1c1c] border border-[#2a2a2a] px-3.5 py-1 rounded-full text-[12px] md:text-[13px] text-[#CCCCCC] flex items-center gap-1.5"
                 >
                   <span className="text-[#888888]">{row.label}:</span>
                   <span className="text-[#EFB946] font-medium">{row.value}</span>
                 </div>
               ))}
+              <button
+                onClick={() => setFullscreenIndex(selected)}
+                className="bg-[#242424] hover:bg-[#303030] border border-[#383838] hover:border-[#EFB946]/60 text-[#EFB946] text-[12px] md:text-[13px] font-medium px-3.5 py-1 rounded-full flex items-center gap-1.5 cursor-pointer transition-colors"
+              >
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>Fullscreen</span>
+              </button>
             </div>
           )}
         </div>
@@ -325,13 +383,114 @@ export function CoverflowCarousel({
               aria-current={index === selected}
               onClick={() => goTo(index)}
               className={cn(
-                "h-2 rounded-full transition-all duration-300 cursor-pointer",
+                "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
                 index === selected
-                  ? "w-8 bg-[#EFB946]"
-                  : "w-2 bg-[#444444] hover:bg-[#666666]"
+                  ? "w-10 bg-[#EFB946]"
+                  : "w-2.5 bg-[#3a3a3a] hover:bg-[#666666]"
               )}
             />
           ))}
+        </div>
+      )}
+
+      {/* FULLSCREEN LIGHTBOX MODAL */}
+      {isFullscreen && activeFullscreen && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 md:p-8 animate-in fade-in duration-300"
+          onClick={() => setFullscreenIndex(null)}
+        >
+          {/* HEADER BAR */}
+          <div
+            className="flex items-center justify-between w-full z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3">
+              <div className="bg-[#1c1c1c] border border-[#333333] px-3.5 py-1.5 rounded-full text-sm text-[#EFB946] font-medium">
+                {fullscreenIndex + 1} / {count}
+              </div>
+              <div className="text-white text-base md:text-lg font-oswald uppercase tracking-wide">
+                {activeFullscreen.title || "Project Screenshot"}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setFullscreenIndex(null)}
+              className="bg-[#1c1c1c] hover:bg-[#2c2c2c] border border-[#333333] hover:border-red-500 text-white p-2.5 rounded-full transition-colors cursor-pointer shadow-lg active:scale-95"
+              aria-label="Close fullscreen view"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+          </div>
+
+          {/* MAIN FULLSCREEN IMAGE CONTAINER */}
+          <div
+            className="relative flex-1 flex items-center justify-center p-2 md:p-6 select-none my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={activeFullscreen.src}
+              alt={activeFullscreen.alt || "Fullscreen screenshot"}
+              className="max-h-[78vh] max-w-[94vw] object-contain rounded-xl shadow-2xl border border-[#262626]"
+            />
+
+            {/* PREV ARROW IN FULLSCREEN */}
+            {count > 1 && (
+              <button
+                type="button"
+                onClick={() =>
+                  setFullscreenIndex((prev) =>
+                    prev > 0 ? prev - 1 : count - 1
+                  )
+                }
+                className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-[#EFB946] text-white hover:text-black p-4 rounded-full border border-white/20 transition-all hover:scale-110 shadow-2xl cursor-pointer active:scale-95"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-7 h-7" />
+              </button>
+            )}
+
+            {/* NEXT ARROW IN FULLSCREEN */}
+            {count > 1 && (
+              <button
+                type="button"
+                onClick={() =>
+                  setFullscreenIndex((prev) =>
+                    prev < count - 1 ? prev + 1 : 0
+                  )
+                }
+                className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-[#EFB946] text-white hover:text-black p-4 rounded-full border border-white/20 transition-all hover:scale-110 shadow-2xl cursor-pointer active:scale-95"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-7 h-7" />
+              </button>
+            )}
+          </div>
+
+          {/* BOTTOM THUMBNAIL STRIP */}
+          <div
+            className="flex items-center justify-center gap-3 overflow-x-auto py-2 z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {slides.map((slide, sIdx) => (
+              <div
+                key={sIdx}
+                onClick={() => setFullscreenIndex(sIdx)}
+                className={cn(
+                  "w-16 h-11 md:w-20 md:h-14 rounded-lg overflow-hidden border-2 cursor-pointer transition-all shrink-0 opacity-60 hover:opacity-100",
+                  sIdx === fullscreenIndex
+                    ? "border-[#EFB946] opacity-100 scale-105"
+                    : "border-transparent"
+                )}
+              >
+                <img
+                  src={slide.src}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

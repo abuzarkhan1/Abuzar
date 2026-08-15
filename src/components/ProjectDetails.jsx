@@ -76,12 +76,12 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                             }));
 
                             return (
-                                <div className="w-full max-w-[1100px] mx-auto relative z-0">
+                                <div className="w-full max-w-[1250px] mx-auto relative z-0">
                                     <CoverflowCarousel
                                         slides={slides}
-                                        cardWidth="clamp(290px, 52vw, 760px)"
-                                        rotate={32}
-                                        depth={0.42}
+                                        cardWidth="clamp(320px, 60vw, 880px)"
+                                        rotate={30}
+                                        depth={0.4}
                                         gap={0.06}
                                         loop={slides.length > 2}
                                         showCaption={true}
