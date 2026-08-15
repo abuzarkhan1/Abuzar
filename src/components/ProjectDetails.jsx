@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CardStack } from "./CardStack";
+import { CoverflowCarousel } from "./ui/coverflow-carousel";
 
 import Wrapper from "./Wrapper";
 import Div from "./Div";
@@ -45,7 +45,7 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                     {/* BACK BUTTON END */}
 
                     {/* PROJECT TITLE START */}
-                    <Div className="mb-10">
+                    <Div className="mb-8">
                         <h1 className="text-[36px] md:text-[60px] 2xl:text-[76px] leading-[42px] md:leading-[68px] 2xl:leading-[84px] font-oswald uppercase text-gradient mb-4">
                             {project.name}
                         </h1>
@@ -55,7 +55,7 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                     </Div>
                     {/* PROJECT TITLE END */}
 
-                    {/* PROJECT IMAGES START */}
+                    {/* PROJECT IMAGES (COVERFLOW CAROUSEL) START */}
                     <Div className="mb-12">
                         {(() => {
                             const images = project.images && project.images.length > 0
@@ -64,21 +64,30 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
 
                             if (images.length === 0) return null;
 
-                            const stackItems = images.map((img, i) => ({
-                                id: i,
-                                title: project.name,
-                                description: i === 0 ? "Featured Preview" : `Project Snapshot ${i + 1}`,
-                                imageSrc: img,
-                                ctaLabel: "View Details"
+                            const slides = images.map((img, i) => ({
+                                src: img,
+                                alt: `${project.name} Screenshot ${i + 1}`,
+                                title: i === 0 ? `${project.name} · Primary Interface` : `${project.name} · Snapshot ${i + 1}`,
+                                subtitle: `${project.category || "Featured System"} · View ${i + 1} of ${images.length}`,
+                                meta: [
+                                    { label: "Preview", value: `${i + 1} / ${images.length}` },
+                                    { label: "Type", value: "Production Screenshot" },
+                                ]
                             }));
 
                             return (
-                                <div className="w-full max-w-[1000px] mx-auto relative z-0">
-                                    <CardStack
-                                        items={stackItems}
-                                        cardWidth={800}
-                                        cardHeight={450}
-                                        className="py-6"
+                                <div className="w-full max-w-[1100px] mx-auto relative z-0">
+                                    <CoverflowCarousel
+                                        slides={slides}
+                                        cardWidth="clamp(290px, 52vw, 760px)"
+                                        rotate={32}
+                                        depth={0.42}
+                                        gap={0.06}
+                                        loop={slides.length > 2}
+                                        showCaption={true}
+                                        showPagination={true}
+                                        showNavigation={true}
+                                        className="py-2"
                                     />
                                 </div>
                             );
