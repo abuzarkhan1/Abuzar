@@ -57,9 +57,6 @@ import postgresql from "../assets/postgresql.svg";
 import githubactions from "../assets/githubactions.svg";
 import jenk from "../assets/jenk.svg";
 
-
-
-
 const Skills = () => {
     const [selectedProject, setSelectedProject] = React.useState(null);
     const { scrollY } = useScroll();
@@ -69,13 +66,11 @@ const Skills = () => {
 
     const handleProjectClick = (project) => {
         setSelectedProject(project);
-        // Prevent body scroll when modal is open
         document.body.style.overflow = 'hidden';
     };
 
     const handleBackToProjects = () => {
         setSelectedProject(null);
-        // Restore body scroll when modal is closed
         document.body.style.overflow = 'unset';
     };
 
@@ -93,7 +88,7 @@ const Skills = () => {
             {/* BACKGROUND ELEMENTS END */}
             <Wrapper>
                 {/* FRONTEND SKILLS START */}
-                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6">Frontend</h2>
+                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6 font-oswald tracking-wide">Frontend</h2>
                 <Div className="grid grid-cols-4 gap-3 md:grid-cols-11 relative mb-10">
                     <SkillIcon path={sk8} />
                     <SkillIcon path={sk9} />
@@ -104,14 +99,11 @@ const Skills = () => {
                     <SkillIcon path={sk11} />
                     <SkillIcon path={sk14} />
                     <SkillIcon path={sk13} />
-
-
-
                 </Div>
                 {/* FRONTEND SKILLS END */}
 
                 {/* BACKEND SKILLS START */}
-                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6">Backend</h2>
+                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6 font-oswald tracking-wide">Backend & Systems</h2>
                 <Div className="grid grid-cols-4 gap-3 md:grid-cols-11 relative mb-10">
                     <SkillIcon path={sknode} />
                     <SkillIcon path={ex} />
@@ -129,29 +121,23 @@ const Skills = () => {
                 {/* BACKEND SKILLS END */}
 
                 {/* DEPLOYMENT SKILLS START */}
-                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6">Deployment</h2>
+                <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6 font-oswald tracking-wide">DevOps & Cloud</h2>
                 <Div className="grid grid-cols-4 gap-3 md:grid-cols-11 relative mb-10">
-                    
-                <SkillIcon path={git} />
-                <SkillIcon path={github} />
-                <SkillIcon path={githubactions} />
-                <SkillIcon path={jenk} />
-                <SkillIcon path={docker} />
-                <SkillIcon path={trivy} />
-                <SkillIcon path={sonar} />
-                <SkillIcon path={Kubernetes} />
-                <SkillIcon path={pro} />
-                <SkillIcon path={graf} />
-                <SkillIcon path={aws} />
-                <SkillIcon path={azure} />
-                <SkillIcon path={gcp} />
-                <SkillIcon path={oracle} />
-                <SkillIcon path={nginx} />
-
-
-
-
-                    {/* Add any additional deployment skills here */}
+                    <SkillIcon path={git} />
+                    <SkillIcon path={github} />
+                    <SkillIcon path={githubactions} />
+                    <SkillIcon path={jenk} />
+                    <SkillIcon path={docker} />
+                    <SkillIcon path={trivy} />
+                    <SkillIcon path={sonar} />
+                    <SkillIcon path={Kubernetes} />
+                    <SkillIcon path={pro} />
+                    <SkillIcon path={graf} />
+                    <SkillIcon path={aws} />
+                    <SkillIcon path={azure} />
+                    <SkillIcon path={gcp} />
+                    <SkillIcon path={oracle} />
+                    <SkillIcon path={nginx} />
                 </Div>
                 {/* DEPLOYMENT SKILLS END */}
 
@@ -167,32 +153,44 @@ const Skills = () => {
                     <div className="md:max-w-[65%] flex flex-col gap-6 md:gap-10">
                         <Service
                             num="1"
-                            title="Web Solution Services"
-                            desc="I specialize in crafting innovative web solutions tailored to your needs. Leveraging the power of cutting-edge technologies and stacks such as React, Node.js, Express, and MongoDB, I am well-equipped to deliver seamless and efficient systems. Whether you require a dynamic CRM system, a comprehensive ERP solution, or any other web-based application, I have the expertise to bring your vision to life."
+                            title="Systems & Desktop Engineering"
+                            desc="I architect high-performance, local-first desktop applications and systems utilities. Leveraging Rust, Tauri v2, Electron, native Swift/C hooks, and WebGL GPU terminal emulation, I deliver sub-10ms latency, extreme memory efficiency, and native OS integration."
                             data={[
-                                "MERN Stack",
-                                "React",
-                                "Node",
-                                "Express",
-                                "TypeScript",
-                                "Mysql",
-                                "Redis",
+                                "Rust",
+                                "Tauri v2",
+                                "Electron",
+                                "Swift",
+                                "Model Context Protocol",
+                                "xterm.js WebGL",
+                                "SQLite",
                             ]}
                         />
                         <Service
                             num="2"
-                            title="DevOps"
-                            desc="I specialize in DevOps practices, leveraging technologies such as Linux, Git, CI/CD, Jenkins, Docker, Kubernetes, Terraform, and Ansible. My expertise allows me to streamline development and deployment processes, ensuring efficient, reliable, and scalable systems."
+                            title="Full-Stack Web Architecture"
+                            desc="I design and build resilient, modern web platforms from interactive frontends to scalable microservices. Utilizing Next.js 14, React 19, TypeScript, Node.js, PostgreSQL, Prisma, Redis, and WebSockets, I deliver seamless user experiences and robust backend APIs."
                             data={[
-                                "Linux",
-                                "Git",
-                                "CI/CD",
-                                "Jenkins",
-                                "Docker",
-                                "Kubernetes",
-                                "Terraform",
-                                "Prometheus",
-                                "Grafana",
+                                "Next.js 14 / React 19",
+                                "TypeScript",
+                                "Node.js & Express",
+                                "PostgreSQL & Prisma",
+                                "MongoDB",
+                                "Redis & WebSockets",
+                                "Tailwind CSS",
+                            ]}
+                        />
+                        <Service
+                            num="3"
+                            title="DevOps & Cloud Infrastructure"
+                            desc="I implement production-ready CI/CD pipelines, GitOps workflows, container orchestration, and real-time observability. With Docker, Kubernetes, Jenkins, ArgoCD, Prometheus, and Grafana, I ensure high availability and automated continuous delivery."
+                            data={[
+                                "Linux & Git",
+                                "Docker & Kubernetes",
+                                "CI/CD & Jenkins",
+                                "ArgoCD & GitOps",
+                                "Prometheus & Grafana",
+                                "AWS & Cloud Deployments",
+                                "SonarQube & Trivy",
                             ]}
                         />
                     </div>
@@ -207,6 +205,7 @@ const Skills = () => {
                             <img
                                 src={pattern}
                                 className="block md:hidden w-[80px] mt-1"
+                                alt=""
                             />
                         </span>
                         <span className="flex items-center gap-4">
@@ -214,6 +213,7 @@ const Skills = () => {
                             <img
                                 src={pattern}
                                 className="hidden md:block md:w-[140px] 2xl:w-[190px] mt-3"
+                                alt=""
                             />
                         </span>
                         <span>Services</span>

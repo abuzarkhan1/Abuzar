@@ -34,30 +34,30 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
 
                 <Wrapper>
                     {/* BACK BUTTON START */}
-                    <Div className="mb-10">
+                    <Div className="mb-10 flex items-center justify-between">
                         <button
                             onClick={onBack}
-                            className="flex items-center gap-3 text-[#EFB946] hover:text-white transition-colors cursor-pointer text-[18px] font-medium bg-[#252525] hover:bg-[#333] px-4 py-2 rounded-lg"
+                            className="flex items-center gap-3 text-[#EFB946] hover:text-white transition-colors cursor-pointer text-[16px] md:text-[18px] font-medium bg-[#252525] hover:bg-[#333] px-5 py-2.5 rounded-lg shadow-lg border border-[#333]"
                         >
                             <FaArrowLeft />
-                            Close Details
+                            Back to Projects
                         </button>
                     </Div>
                     {/* BACK BUTTON END */}
 
                     {/* PROJECT TITLE START */}
                     <Div className="mb-10">
-                        <h1 className="text-[40px] md:text-[70px] 2xl:text-[90px] leading-[45px] md:leading-[75px] 2xl:leading-[95px] font-oswald uppercase text-gradient mb-4">
+                        <h1 className="text-[36px] md:text-[60px] 2xl:text-[76px] leading-[42px] md:leading-[68px] 2xl:leading-[84px] font-oswald uppercase text-gradient mb-4">
                             {project.name}
                         </h1>
-                        <div className="text-[16px] 2xl:text-[20px] leading-[24px] 2xl:leading-[32px] text-[#CCCCCC] max-w-[800px]">
+                        <div className="text-[16px] 2xl:text-[20px] leading-[24px] 2xl:leading-[32px] text-[#CCCCCC] max-w-[850px]">
                             {project.description}
                         </div>
                     </Div>
                     {/* PROJECT TITLE END */}
 
                     {/* PROJECT IMAGES START */}
-                    <Div className="mb-10">
+                    <Div className="mb-12">
                         {(() => {
                             const images = project.images && project.images.length > 0
                                 ? project.images
@@ -68,7 +68,7 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                             const stackItems = images.map((img, i) => ({
                                 id: i,
                                 title: project.name,
-                                description: i === 0 ? "Featured Shot" : `Gallery Image ${i + 1}`,
+                                description: i === 0 ? "Featured Preview" : `Project Snapshot ${i + 1}`,
                                 imageSrc: img,
                                 ctaLabel: "View Details"
                             }));
@@ -79,7 +79,7 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                                         items={stackItems}
                                         cardWidth={800}
                                         cardHeight={450}
-                                        className="py-10"
+                                        className="py-6"
                                     />
                                 </div>
                             );
@@ -88,19 +88,21 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                     {/* PROJECT IMAGES END */}
 
                     {/* PROJECT DETAILS GRID START */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
                         {/* DESCRIPTION SECTION START */}
                         <Div>
-                            <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6 font-oswald">
-                                Project Overview
+                            <h2 className="text-[26px] 2xl:text-[32px] text-[#EFB946] uppercase mb-6 font-oswald tracking-wide">
+                                Project Overview & Architecture
                             </h2>
-                            <div className="text-[16px] 2xl:text-[20px] leading-[24px] 2xl:leading-[32px] text-[#CCCCCC] space-y-4">
+                            <div className="text-[15px] md:text-[16px] 2xl:text-[18px] leading-[26px] 2xl:leading-[30px] text-[#CCCCCC] space-y-4 whitespace-pre-line font-light">
                                 {project.fullDescription ? (
-                                    project.fullDescription.split('\n').map((paragraph, index) => (
-                                        <p key={index}>{paragraph}</p>
+                                    project.fullDescription.split('\n\n').map((paragraph, index) => (
+                                        <p key={index} className="text-[#D1D5DB] leading-relaxed">
+                                            {paragraph.trim()}
+                                        </p>
                                     ))
                                 ) : (
-                                    <p>{project.description}</p>
+                                    <p className="text-[#D1D5DB] leading-relaxed">{project.description}</p>
                                 )}
                             </div>
                         </Div>
@@ -108,20 +110,21 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
 
                         {/* SKILLS AND TOOLS SECTION START */}
                         <Div>
-                            <h2 className="text-[28px] 2xl:text-[34px] text-[#EFB946] uppercase mb-6 font-oswald">
-                                Technologies Used
+                            <h2 className="text-[26px] 2xl:text-[32px] text-[#EFB946] uppercase mb-6 font-oswald tracking-wide">
+                                Technologies & Tooling
                             </h2>
                             <div className="space-y-6">
                                 {project.skills && (
-                                    <div>
-                                        <h3 className="text-[20px] 2xl:text-[24px] text-white mb-3 font-medium">
-                                            Skills & Technologies
+                                    <div className="bg-[#181818] p-6 rounded-xl border border-[#282828]">
+                                        <h3 className="text-[18px] 2xl:text-[22px] text-white mb-3 font-medium flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-[#EFB946]"></span>
+                                            Core Technologies & Frameworks
                                         </h3>
-                                        <div className="flex flex-wrap gap-2">
+                                        <div className="flex flex-wrap gap-2 pt-2">
                                             {project.skills.map((skill, index) => (
                                                 <span
                                                     key={index}
-                                                    className="bg-[#252525] rounded-lg py-[8px] px-[15px] text-[14px] 2xl:text-[16px] text-[#CCCCCC]"
+                                                    className="bg-[#242424] hover:bg-[#303030] transition-colors border border-[#333333] rounded-lg py-[6px] px-[14px] text-[13px] 2xl:text-[15px] text-[#E5E7EB] font-medium"
                                                 >
                                                     {skill}
                                                 </span>
@@ -131,15 +134,16 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
                                 )}
 
                                 {project.tools && (
-                                    <div>
-                                        <h3 className="text-[20px] 2xl:text-[24px] text-white mb-3 font-medium">
-                                            Tools & Platforms
+                                    <div className="bg-[#181818] p-6 rounded-xl border border-[#282828]">
+                                        <h3 className="text-[18px] 2xl:text-[22px] text-white mb-3 font-medium flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-[#EFB946]"></span>
+                                            Infrastructure, Protocols & Tools
                                         </h3>
-                                        <div className="flex flex-wrap gap-2">
+                                        <div className="flex flex-wrap gap-2 pt-2">
                                             {project.tools.map((tool, index) => (
                                                 <span
                                                     key={index}
-                                                    className="bg-[#1a1a1a] border border-[#333] rounded-lg py-[8px] px-[15px] text-[14px] 2xl:text-[16px] text-[#EFB946]"
+                                                    className="bg-[#1c1c1c] border border-[#EFB946]/30 rounded-lg py-[6px] px-[14px] text-[13px] 2xl:text-[15px] text-[#EFB946] font-medium"
                                                 >
                                                     {tool}
                                                 </span>
@@ -155,16 +159,27 @@ const ProjectDetails = ({ project, onBack, isOpen }) => {
 
                     {/* PROJECT LINKS START */}
                     {(project.codeLink || project.liveLink) && (
-                        <Div className="flex justify-center gap-6">
+                        <Div className="flex flex-wrap justify-center gap-5 pt-4 pb-8">
                             {project.codeLink && (
                                 <a
                                     href={project.codeLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-3 bg-[#252525] hover:bg-[#EFB946] hover:text-black transition-all duration-300 rounded-lg py-[15px] px-[25px] text-[16px] 2xl:text-[18px] font-medium"
+                                    className="flex items-center gap-3 bg-[#242424] hover:bg-[#333333] text-white hover:text-[#EFB946] border border-[#383838] hover:border-[#EFB946]/60 transition-all duration-300 rounded-lg py-[14px] px-[26px] text-[15px] 2xl:text-[17px] font-medium shadow-lg"
                                 >
-                                    <FaGithub />
-                                    View Code
+                                    <FaGithub size={18} />
+                                    View Source Code
+                                </a>
+                            )}
+                            {project.liveLink && (
+                                <a
+                                    href={project.liveLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-3 bg-[#EFB946] hover:bg-white text-black font-semibold transition-all duration-300 rounded-lg py-[14px] px-[28px] text-[15px] 2xl:text-[17px] shadow-lg shadow-[#EFB946]/10"
+                                >
+                                    <FaExternalLinkAlt size={16} />
+                                    Launch Live Website
                                 </a>
                             )}
                         </Div>
