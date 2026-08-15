@@ -122,6 +122,7 @@ Key Architectural & Technical Highlights:
       "macOS Toolchain",
     ],
     codeLink: "https://github.com/abuzarkhan1/Kanban_Connector_For_Ai_Harness",
+    liveLink: "https://kanban-connector-for-ai-harness.vercel.app/",
   },
   {
     name: "VibeGrid — Agnostic AI Agent Grid & GPU Terminal",
@@ -160,7 +161,7 @@ Key Architectural & Technical Highlights:
       "Next.js (Web)",
     ],
     codeLink: "https://github.com/abuzarkhan1/VibeGrid",
-    liveLink: "https://vibegrid.vercel.app",
+    liveLink: "https://vibe-grid-lyart.vercel.app/",
   },
   {
     name: "VibeVoice — Native macOS Push-to-Talk & AI Launcher",
@@ -208,6 +209,7 @@ Key Architectural & Technical Highlights:
       "Postman",
     ],
     codeLink: "https://github.com/abuzarkhan1/VibeVoice",
+    liveLink: "https://vibe-voice-website.vercel.app/",
   },
   {
     name: "Pulse — Unified Productivity & Mind Mapping Workspace",
@@ -295,6 +297,7 @@ Key Architectural & Technical Highlights:
       "Linux / macOS / Windows",
     ],
     codeLink: "https://github.com/abuzarkhan1/gitx",
+    liveLink: "https://gitx-one.vercel.app/",
   },
   {
     name: "Next-Gen HRMS with AI Screening & DevOps Automation",
