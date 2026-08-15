@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
 import { CardStack } from "./CardStack";
 
 import Wrapper from "./Wrapper";

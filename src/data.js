@@ -1,4 +1,3 @@
-import p1 from "./assets/plura.jpeg";
 import p2 from "./assets/multi.jpg";
 import aa1 from "./assets/aa1.jpeg";
 import aa2 from "./assets/aa2.jpeg";
