@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Wrapper from "./Wrapper";
-import man from "../assets/rizwan.png";
 import externalLinkIcon from "../assets/external-link-icon.png";
 import gmailIcon from "../assets/email-icon.png";
 import { scrollTo } from "../helper";
@@ -94,7 +93,7 @@ const HeroBanner = () => {
 
                 {/* BIG HEADING START */}
                 <motion.div
-                    className="flex justify-center text-center mt-14 mb-8 relative z-10"
+                    className="flex justify-center text-center mt-14 mb-8 relative"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
@@ -155,19 +154,17 @@ const HeroBanner = () => {
                     animate={{ y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <img src={man} alt="" />
-
                     {/* HIRE ME BUTTON START */}
                     <div
-                        className="absolute top-[140px] -right-10 2xl:top-[240px] 2xl:-right-10 w-[140px] h-[140px] rounded-full bg-white/[0.7] flex flex-col justify-center items-center gap-2 backdrop-blur-sm cursor-pointer transition-transform scale-[0.65] md:scale-100 active:scale-[0.55] md:active:scale-95"
+                        className="absolute top-[140px] -right-10 2xl:top-[240px] 2xl:-right-10 w-[130px] h-[130px] rounded-full bg-white/[0.8] hover:bg-[#EFB946] flex flex-col justify-center items-center gap-2 backdrop-blur-sm cursor-pointer transition-all scale-[0.7] md:scale-100 active:scale-[0.6] md:active:scale-95 shadow-xl group"
                         onClick={() => scrollTo("contact")}
                     >
                         <img
                             src={externalLinkIcon}
                             alt=""
-                            className="w-[15px]"
+                            className="w-[15px] group-hover:rotate-45 transition-transform duration-300"
                         />
-                        <div className="text-black">Hire Me</div>
+                        <div className="text-black font-semibold text-sm uppercase tracking-wide">Hire Me</div>
                     </div>
                     {/* HIRE ME BUTTON END */}
                 </motion.div>
