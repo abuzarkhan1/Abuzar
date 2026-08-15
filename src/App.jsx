@@ -1,4 +1,5 @@
 import HeroBanner from "./components/HeroBanner";
+import Portfolio from "./components/Portfolio";
 import AboutMe from "./components/AboutMe";
 import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
@@ -9,6 +10,7 @@ function App() {
     return (
         <div className="App">
             <HeroBanner />
+            <Portfolio />
             <AboutMe />
             <Skills />
             <Testimonials />

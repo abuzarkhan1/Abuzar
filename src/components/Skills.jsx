@@ -4,9 +4,7 @@ import { motion, useTransform, useScroll } from "framer-motion";
 import Wrapper from "./Wrapper";
 import SkillIcon from "./SkillIcon";
 import Service from "./Service";
-import Portfolio from "./Portfolio";
 import Achievements from "./Achievements";
-import ProjectDetails from "./ProjectDetails";
 import Div from "./Div";
 import Certificates from "./Certificates";
 
@@ -58,21 +56,10 @@ import githubactions from "../assets/githubactions.svg";
 import jenk from "../assets/jenk.svg";
 
 const Skills = () => {
-    const [selectedProject, setSelectedProject] = React.useState(null);
     const { scrollY } = useScroll();
     const y1 = useTransform(scrollY, [0, 1500], [1000, 0], { clamp: false });
     const y2 = useTransform(scrollY, [0, 2200], [1500, 0], { clamp: false });
     const y3 = useTransform(scrollY, [0, 2700], [2000, 0], { clamp: false });
-
-    const handleProjectClick = (project) => {
-        setSelectedProject(project);
-        document.body.style.overflow = 'hidden';
-    };
-
-    const handleBackToProjects = () => {
-        setSelectedProject(null);
-        document.body.style.overflow = 'unset';
-    };
 
     return (
         <div
@@ -222,16 +209,8 @@ const Skills = () => {
                 </div>
                 {/* SERVICES SECTION END */}
 
-                <Portfolio onProjectClick={handleProjectClick} />
                 <Achievements />
             </Wrapper>
-            
-            {/* PROJECT DETAILS MODAL */}
-            <ProjectDetails 
-                project={selectedProject} 
-                onBack={handleBackToProjects}
-                isOpen={!!selectedProject}
-            />
         </div>
     );
 };

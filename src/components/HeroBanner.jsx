@@ -65,6 +65,12 @@ const HeroBanner = () => {
                     <ul className="flex 2xl:text-[20px] gap-2">
                         <li
                             className="cursor-pointer px-4 py-2 hover:bg-[#252525] transition active:scale-95 rounded-lg text-[#CCCCCC] hover:text-[#EFB946]"
+                            onClick={() => scrollTo("work")}
+                        >
+                            Projects
+                        </li>
+                        <li
+                            className="cursor-pointer px-4 py-2 hover:bg-[#252525] transition active:scale-95 rounded-lg text-[#CCCCCC] hover:text-[#EFB946]"
                             onClick={() => scrollTo("about")}
                         >
                             About me
@@ -74,12 +80,6 @@ const HeroBanner = () => {
                             onClick={() => scrollTo("skills")}
                         >
                             Skills
-                        </li>
-                        <li
-                            className="cursor-pointer px-4 py-2 hover:bg-[#252525] transition active:scale-95 rounded-lg text-[#CCCCCC] hover:text-[#EFB946]"
-                            onClick={() => scrollTo("work")}
-                        >
-                            Work
                         </li>
                         <li
                             className="cursor-pointer px-4 py-2 hover:bg-[#252525] transition active:scale-95 rounded-lg text-[#CCCCCC] hover:text-[#EFB946]"
@@ -125,15 +125,17 @@ const HeroBanner = () => {
 
                 {/* NUMBER BLOCK START */}
                 <motion.div
-                    className="hidden md:flex gap-8 relative z-10"
+                    className="hidden md:flex gap-8 relative z-10 cursor-pointer group"
                     initial={{ y: 300, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.7, delay: 0.25 }}
+                    onClick={() => scrollTo("work")}
+                    title="Click to view Projects"
                 >
                     {/* START */}
                     <div className="flex items-center gap-3">
-                        <div className="text-[75px] font-light text-[#EFB946]">30+</div>
-                        <div className="leading-[22px] text-[15px] text-[#CCCCCC] font-medium">
+                        <div className="text-[75px] font-light text-[#EFB946] group-hover:scale-105 transition-transform">30+</div>
+                        <div className="leading-[22px] text-[15px] text-[#CCCCCC] group-hover:text-white transition-colors font-medium">
                             SUCCESSFULLY
                             <br />
                             COMPLETED
