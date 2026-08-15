@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import Wrapper from "./Wrapper";
-import developerPortrait from "../assets/developer-portrait.png";
+import man from "../assets/man.png";
 import externalLinkIcon from "../assets/external-link-icon.png";
 import gmailIcon from "../assets/email-icon.png";
 import { scrollTo } from "../helper";
@@ -148,30 +148,26 @@ const HeroBanner = () => {
                 </motion.div>
                 {/* NUMBER BLOCK END */}
 
-                {/* PERSON BLOCK START (WITH 3D DEVELOPER PORTRAIT GRAPHIC) */}
+                {/* PERSON BLOCK START */}
                 <motion.div
-                    className="w-[280px] sm:w-[320px] md:w-[380px] 2xl:w-[440px] absolute bottom-0 left-[50%] -translate-x-1/2 pointer-events-none"
-                    initial={{ y: 200, x: "-50%", opacity: 0 }}
-                    animate={{ y: 0, x: "-50%", opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="w-[300px] md:w-[360px] 2xl:w-[350px] absolute bottom-0 left-[50%] -translate-x-1/2"
+                    initial={{ y: 200, x: "-50%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.5 }}
                 >
-                    <img
-                        src={developerPortrait}
-                        alt="Abuzar Khan - 3D Developer Portrait"
-                        className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
-                    />
+                    <img src={man} alt="" />
 
                     {/* HIRE ME BUTTON START */}
                     <div
-                        className="absolute top-[120px] -right-6 md:top-[160px] md:-right-10 2xl:top-[210px] 2xl:-right-12 w-[130px] h-[130px] rounded-full bg-white/[0.85] hover:bg-[#EFB946] flex flex-col justify-center items-center gap-2 backdrop-blur-md cursor-pointer transition-all scale-[0.7] md:scale-100 active:scale-[0.6] md:active:scale-95 shadow-2xl group pointer-events-auto z-20"
+                        className="absolute top-[140px] -right-10 2xl:top-[240px] 2xl:-right-10 w-[140px] h-[140px] rounded-full bg-white/[0.7] flex flex-col justify-center items-center gap-2 backdrop-blur-sm cursor-pointer transition-transform scale-[0.65] md:scale-100 active:scale-[0.55] md:active:scale-95"
                         onClick={() => scrollTo("contact")}
                     >
                         <img
                             src={externalLinkIcon}
                             alt=""
-                            className="w-[15px] group-hover:rotate-45 transition-transform duration-300"
+                            className="w-[15px]"
                         />
-                        <div className="text-black font-semibold text-sm uppercase tracking-wide">Hire Me</div>
+                        <div className="text-black">Hire Me</div>
                     </div>
                     {/* HIRE ME BUTTON END */}
                 </motion.div>
