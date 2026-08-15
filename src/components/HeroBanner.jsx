@@ -32,7 +32,7 @@ const HeroBanner = () => {
     return (
         <div
             id="hero"
-            className="w-full h-[100vh] relative bg-[#111111] overflow-hidden"
+            className="w-full min-h-[100vh] relative bg-[#111111] overflow-hidden flex flex-col justify-between pb-12"
         >
             {/* BACKGROUND ELEMENTS FOR DESKTOP START */}
             <motion.span
@@ -93,12 +93,12 @@ const HeroBanner = () => {
 
                 {/* BIG HEADING START */}
                 <motion.div
-                    className="flex justify-center text-center mt-14 mb-8 relative"
-                    initial={{ opacity: 0, scale: 0.5 }}
+                    className="flex justify-center text-center mt-10 md:mt-12 mb-6 relative z-10"
+                    initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h1 className="text-[46px] md:text-[110px] 2xl:text-[120px] leading-[48px] md:leading-[115px] 2xl:leading-[130px] font-oswald uppercase text-gradient">
+                    <h1 className="text-[44px] md:text-[95px] 2xl:text-[115px] leading-[48px] md:leading-[100px] 2xl:leading-[120px] font-oswald uppercase text-gradient">
                         I Am A Software
                         <br className="invisible md:visible" />
                         Engineer
@@ -106,69 +106,127 @@ const HeroBanner = () => {
                 </motion.div>
                 {/* BIG HEADING END */}
 
-                {/* INTRO START */}
-                <motion.div
-                    className="flex flex-col mb-10 text-center md:text-left text-[16px] md:text-[18px] leading-[24px] md:leading-[28px] relative z-10"
-                    initial={{ y: 300, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 0.25 }}
-                >
-                    <div className="font-light mb-3 text-lg">
-                        👋 Hi, I Am{" "}
-                        <span className="font-semibold text-white">Abuzar Khan,</span>
-                    </div>
-                    <div className="max-w-[560px] text-[#BBBBBB] leading-relaxed">
-                        A passionate and results-driven software engineer specializing in high-performance desktop systems, Rust tools, AI agent orchestration, full-stack web platforms, and automated DevOps infrastructure.
-                    </div>
-                </motion.div>
-                {/* INTRO END */}
-
-                {/* NUMBER BLOCK START */}
-                <motion.div
-                    className="hidden md:flex gap-8 relative z-10 cursor-pointer group"
-                    initial={{ y: 300, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 0.25 }}
-                    onClick={() => scrollTo("work")}
-                    title="Click to view Projects"
-                >
-                    {/* START */}
-                    <div className="flex items-center gap-3">
-                        <div className="text-[75px] font-light text-[#EFB946] group-hover:scale-105 transition-transform">30+</div>
-                        <div className="leading-[22px] text-[15px] text-[#CCCCCC] group-hover:text-white transition-colors font-medium">
-                            SUCCESSFULLY
-                            <br />
-                            COMPLETED
-                            <br />
-                            PROJECTS
-                        </div>
-                    </div>
-                    {/* END */}
-                </motion.div>
-                {/* NUMBER BLOCK END */}
-
-                {/* PERSON BLOCK START */}
-                <motion.div
-                    className="w-[300px] md:w-[360px] 2xl:w-[350px] absolute bottom-0 left-[50%] -translate-x-1/2"
-                    initial={{ y: 200, x: "-50%" }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {/* HIRE ME BUTTON START */}
-                    <div
-                        className="absolute top-[140px] -right-10 2xl:top-[240px] 2xl:-right-10 w-[130px] h-[130px] rounded-full bg-white/[0.8] hover:bg-[#EFB946] flex flex-col justify-center items-center gap-2 backdrop-blur-sm cursor-pointer transition-all scale-[0.7] md:scale-100 active:scale-[0.6] md:active:scale-95 shadow-xl group"
-                        onClick={() => scrollTo("contact")}
+                {/* TWO COLUMN HERO CONTENT GRID */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 my-auto">
+                    {/* LEFT COLUMN */}
+                    <motion.div
+                        className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
+                        initial={{ y: 150, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <img
-                            src={externalLinkIcon}
-                            alt=""
-                            className="w-[15px] group-hover:rotate-45 transition-transform duration-300"
-                        />
-                        <div className="text-black font-semibold text-sm uppercase tracking-wide">Hire Me</div>
-                    </div>
-                    {/* HIRE ME BUTTON END */}
-                </motion.div>
-                {/* PERSON BLOCK END */}
+                        {/* LIVE AVAILABILITY BADGE */}
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C1C1C] border border-[#2D2D2D] text-[13px] text-[#D1D5DB] mb-4 shadow-sm">
+                            <span className="w-2 h-2 rounded-full bg-[#4ADE80] animate-pulse"></span>
+                            <span>Available for Engineering Projects</span>
+                        </div>
+
+                        {/* GREETING */}
+                        <div className="font-light text-lg md:text-xl text-[#EEEEEE] mb-2">
+                            👋 Hi, I Am <span className="font-semibold text-white">Abuzar Khan,</span>
+                        </div>
+
+                        {/* BIO DESCRIPTION */}
+                        <p className="max-w-[580px] text-[#A3A3A3] text-[15px] md:text-[17px] leading-relaxed mb-6 font-light">
+                            A passionate software engineer specializing in high-performance desktop systems, Rust tools, AI agent orchestration (MCP), full-stack web platforms, and automated DevOps infrastructure.
+                        </p>
+
+                        {/* PRIMARY ACTIONS & CTA */}
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-6">
+                            <button
+                                onClick={() => scrollTo("work")}
+                                className="bg-[#EFB946] hover:bg-[#F2C766] text-black font-semibold text-[15px] px-6 py-3 rounded-xl transition-all shadow-lg shadow-[#EFB946]/20 flex items-center gap-2 cursor-pointer active:scale-95"
+                            >
+                                <span>Explore Featured Projects</span>
+                                <span>→</span>
+                            </button>
+                            <button
+                                onClick={() => scrollTo("contact")}
+                                className="bg-[#202020] hover:bg-[#2A2A2A] text-white border border-[#333333] font-medium text-[15px] px-6 py-3 rounded-xl transition-all cursor-pointer active:scale-95"
+                            >
+                                Get In Touch
+                            </button>
+                        </div>
+
+                        {/* 30+ COMPLETED PROJECTS STAT CARD */}
+                        <div
+                            onClick={() => scrollTo("work")}
+                            className="inline-flex items-center gap-4 bg-[#181818]/90 border border-[#2A2A2A] px-5 py-3 rounded-2xl cursor-pointer hover:border-[#EFB946]/50 transition-all group shadow-md"
+                            title="Click to view all projects"
+                        >
+                            <div className="text-[36px] md:text-[42px] font-light text-[#EFB946] group-hover:scale-105 transition-transform font-oswald leading-none">
+                                30+
+                            </div>
+                            <div className="text-[12px] md:text-[13px] text-[#AAAAAA] group-hover:text-[#EEEEEE] transition-colors leading-tight font-medium uppercase tracking-wide text-left">
+                                Successfully<br />Completed Projects
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* RIGHT COLUMN: DEVELOPER TERMINAL & ANCHORED HIRE ME BADGE */}
+                    <motion.div
+                        className="lg:col-span-5 relative w-full flex justify-center lg:justify-end"
+                        initial={{ y: 150, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                        <div className="w-full max-w-[460px] bg-[#161616] border border-[#2B2B2B] rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md relative">
+                            {/* TERMINAL HEADER */}
+                            <div className="bg-[#1F1F1F] px-4 py-3 border-b border-[#2A2A2A] flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                    <span className="w-3 h-3 rounded-full bg-[#FF5F56]"></span>
+                                    <span className="w-3 h-3 rounded-full bg-[#FFBD2E]"></span>
+                                    <span className="w-3 h-3 rounded-full bg-[#27C93F]"></span>
+                                </div>
+                                <div className="text-[12px] text-[#888888] font-mono">abuzar@mbp: ~/systems</div>
+                                <div className="w-10"></div>
+                            </div>
+
+                            {/* TERMINAL BODY */}
+                            <div className="p-5 font-mono text-[13px] leading-relaxed text-[#D1D5DB] space-y-3.5">
+                                <div>
+                                    <span className="text-[#EFB946] font-semibold">$</span> cargo run --release -p gitx
+                                </div>
+                                <div className="text-[#4ADE80] text-[12px] pl-3 border-l-2 border-[#4ADE80]/40">
+                                    ✓ 11 modular crates compiled (0.82s)<br />
+                                    ✓ Sub-second SQLite git history indexed<br />
+                                    ✓ Ratatui interactive TUI active
+                                </div>
+
+                                <div>
+                                    <span className="text-[#EFB946] font-semibold">$</span> vibevoice --listen --mcp
+                                </div>
+                                <div className="text-[#60A5FA] text-[12px] pl-3 border-l-2 border-[#60A5FA]/40">
+                                    ✓ macOS Speech framework initialized<br />
+                                    ✓ Audio RMS: 60 FPS live waveform<br />
+                                    ✓ Claude 3.5 Sonnet / GPT-4o cleanup online
+                                </div>
+
+                                <div className="pt-2 border-t border-[#262626] flex items-center justify-between text-[11px] text-[#999999]">
+                                    <span className="flex items-center gap-1.5">
+                                        <span className="w-2 h-2 rounded-full bg-[#EFB946]"></span>
+                                        Rust · Tauri · Next.js · K8s
+                                    </span>
+                                    <span className="text-[#4ADE80] font-semibold">Sub-10ms Latency</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ANCHORED HIRE ME FLOATING ORBIT BUTTON */}
+                        <div
+                            className="hidden md:flex absolute -bottom-5 -right-3 2xl:-right-5 w-[115px] h-[115px] rounded-full bg-[#EFB946] hover:bg-[#F2C766] text-black flex-col justify-center items-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#EFB946]/30 z-20 group"
+                            onClick={() => scrollTo("contact")}
+                            title="Hire Me / Contact"
+                        >
+                            <img
+                                src={externalLinkIcon}
+                                alt=""
+                                className="w-[14px] group-hover:rotate-45 transition-transform duration-300"
+                            />
+                            <div className="text-black font-bold text-[12px] uppercase tracking-wide">Hire Me</div>
+                        </div>
+                    </motion.div>
+                </div>
             </Wrapper>
 
             <div style={socialIconsStyle} className="hidden md:flex">
